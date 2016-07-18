@@ -16,6 +16,6 @@ A commit is saving changes made to a branch. A good commit message is breif but 
 
 * What is a merge conflict?
 
-A merge conflict is when the branch you are trying to merge into another branch and that other branch have different changes that have been committed but untracked.
+A merge conflict is when the branch you are trying to merge into another branch and that other branch have commits that do not exist in one another.
 
 Tag teacher feature change
