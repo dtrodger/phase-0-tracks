@@ -4,7 +4,7 @@
 
 * What is version control?  Why is it useful?
 
-Version control is managming the changes to documents in a software project in an organized way. It is useful in determining workflow on a project with many participants. It also provides backups for work.
+Version control is managming the changes to documents in a software project in an organized way. It is useful in determining workflow on a project with many participants. It also provides backups for project work.
 
 * What is a branch and why would you use one?
 
