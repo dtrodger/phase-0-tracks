@@ -1,3 +1,30 @@
+@media screen and (max-width: 768px) {
+  h1 {
+    font-size:1.6em;
+  }
+  #external-links, main {
+    display:block!important;
+    width:100%;
+  }
+  #external-links {
+    width:100%!important;
+  }
+  hr {
+    visibility:visible!important;
+  }
+}
+
+@media screen and (min-width: 785px) and (max-width: 500px) {
+  #external-links ul li {
+    display:block;
+  }
+}
+
+hr {
+  visibility: hidden;
+}
+
+
 blockquote {
   border-left: 5px solid blue;
   padding: 15px;
@@ -5,18 +32,20 @@ blockquote {
 }
 
 body {
-  width:960px;
+  max-width:960px;
 }
 
 #external-links {
-  width:200px;
+  width:25%;
   vertical-align:top;
   display:inline-block;
 }
 
 main {
-  width:756px;
+  width:70%;
+  margin: 0 auto;
   display:inline-block;
+  text-align: center;
 }
 cite {
   display: block;
@@ -28,11 +57,15 @@ cite {
   padding-left: 0px;
 }
 
+#external-links ul li{
+  margin-top:20px;
+}
+
 /* you're welcome to edit the
 image, figure, and figcaption CSS if you'd like, 
 but it's optional! */
 img {
-  width: 100%;
+  max-width: 100%
 }
 
 figure {
@@ -44,3 +77,4 @@ figcaption {
   font-style: italic;
   text-align: right;
 }
+
