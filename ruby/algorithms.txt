@@ -8,5 +8,16 @@ Algorithm for opperating an elevator
 7. Check the screen that shows which floor the elevator is currently on.
 8. When the screen shows the floor number that is on the button you pressed in the elevator, and the elevator doors open, walk out of the elevator.
 
-
+Algorithm for making a pb and j sandwich
+1. Locate a loaf of pre cut bread, a jar of peanut butter, a jar of jelly and a knife in the kitchen.
+2. Place two slices of bread from the bag containing bread on the kitchen table.
+3. Open peanut butter jar
+4. Insert knife into peanut butter jar until it is half submerged in peanut butter.
+5. Remove the knife from the jar.
+6. Spread the peanut butter that is on the knife onto one side of the one of the slices of bread.
+7. Whipe remaining peanut butter off the knife.
+8. Insert knife into jelly jar until it is half submerged in jelly.
+9. Remove the knife from the jar.
+10. Spread the jelly that is on the knife onto one side of the slice of bread that does not have peanut butter on it.
+11. Place the slice of bread that contains peanut butter on top of the other slice of bread with the sides that contain peanut butter and jelly touching. 
 
