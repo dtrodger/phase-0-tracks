@@ -1,0 +1,12 @@
+Algorithm for opperating an elevator
+1. While standing outside of the elevator, if you would like to go up, press the button with an up arrow. 
+2. While standing outside of the elevator, if you would like to go down, press the button with a down arrow on it.
+3. Wait for the elevator doors to open.
+4. When the elevator doors open, enter the elevator.
+5. Locate the buttons that have numbers on them.
+6. Press the button that has the number on it that matches the floor you would like to go to.
+7. Check the screen that shows which floor the elevator is currently on.
+8. When the screen shows the floor number that is on the button you pressed in the elevator, and the elevator doors open, walk out of the elevator.
+
+
+
