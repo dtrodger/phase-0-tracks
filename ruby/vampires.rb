@@ -102,6 +102,8 @@ for i in (1..num_employees.to_i)
 		puts "#{name} is probably not a vampire"
 	else
 		puts "Results inconclusive"
-	end
-	 	
+	end 	
 end
+
+print "Actually, never mind! What do these questions have to do with anything? Let's all be friends."
+
