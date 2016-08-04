@@ -1,7 +1,7 @@
 
-def encrypt()
+def encrypt
 
-	print "word to encrypt: "
+	print "Word to encrypt: "
 	message = gets.chomp
 
 	encrypted_message = ""
@@ -17,4 +17,29 @@ def encrypt()
 	print encrypted_message
 end
 
-encrypt()
+def decrypt
+
+	print "\nWord to decrypt: "
+	message = gets.chomp
+
+	alpha = "abcdefghijklmnopqrstuvwxyz"
+
+	decrypted_message = ""
+
+	for letter in message.each_char
+		if letter == " "
+			decrypted_message += letter
+		else
+			alpha_index = alpha.index(letter)
+			alpha_index -= 1
+			letter = alpha[alpha_index]
+			decrypted_message += letter
+		end
+	end
+
+	print decrypted_message
+end
+
+encrypt
+
+decrypt
