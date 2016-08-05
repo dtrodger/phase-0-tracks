@@ -14,12 +14,8 @@ good_bad_candidate = gets.chomp
 print "Estimated age: "
 age = gets.chomp
 
-if age == "":
+if age == ""
 	age = nil
-end
-
-puts name volume fur_color good_bad_candidate age
-
-if age == nil:
-	puts "age is nil"
+else
+	age = age.to_i
 end
