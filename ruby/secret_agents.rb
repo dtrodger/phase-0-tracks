@@ -1,8 +1,6 @@
 
-def encrypt
-
-	print "Word to encrypt: "
-	message = gets.chomp
+# Method that encrypts string
+def encrypt message
 
 	encrypted_message = ""
 
@@ -13,14 +11,12 @@ def encrypt
 			encrypted_message += letter.next
 		end
 	end
-
-	print encrypted_message
+	
+	encrypted_message
 end
 
-def decrypt
-
-	print "\nWord to decrypt: "
-	message = gets.chomp
+# Methods the decrypts string
+def decrypt message
 
 	alpha = "abcdefghijklmnopqrstuvwxyz"
 
@@ -36,10 +32,34 @@ def decrypt
 			decrypted_message += letter
 		end
 	end
-
-	print decrypted_message
+	decrypted_message
 end
 
-encrypt
+# encrypt("abc")
+# encrypt("zed")
+# decrypt("bcd")
+# decrypt("afe")
 
-decrypt
+# decrypt(encrypt("swordfish"))
+
+# Asks user if they want to encrypt or decrypt
+print "Would like to decrypt or encrypt a password: "
+decrypt_or_encrypt = gets.chomp.downcase
+
+until decrypt_or_encrypt == "encrypt" || decrypt_or_encrypt == "decrypt"
+	print "INVALID ENTRY: Would like to decrypt or encrypt a password: "
+	decrypt_or_encrypt = gets.chomp.downcase
+end
+
+# Asks user for password to encrypt or decrypt
+print "Enter a password: "
+password = gets.chomp
+
+# Encrypt or decrypt password
+if decrypt_or_encrypt == "encrypt"
+	result = encrypt(password)
+else
+	result = decrypt(password)
+end
+
+puts result
