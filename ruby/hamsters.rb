@@ -1,21 +1,24 @@
 
-print "What is the hamsters name: "
+
+
+print "What is the hamsters name? "
 name = gets.chomp
 
-print "What is the volume (1-10) "
+print "What is the volume (1-10)? "
 volume = gets.chomp
 
-print "What is the fur color? "
+print "What is the hamsters fur color? "
 fur_color = gets.chomp
 
-print "Good candidate for adoption (Good Bad): "
-good_bad_candidate = gets.chomp
+print "Is the hamster a good candidate for adoption? "
+good_bad = gets.chomp.upcase
 
-print "Estimated age: "
+until good_bad == "Yes" || good_bad == "No"
+	print "Is the hamster a goof candidate for adoption? "
+	good_bad = gets.chomp.downcase
+end
+
+print "Estimated age hamster age? "
 age = gets.chomp
 
-if age == ""
-	age = nil
-else
-	age = age.to_i
-end
+print "Name: #{name}\nVolume: #{volume}\nFur Color: #{fur_color}\nGood Candidate: #{good_bad}\nAge: #{age}"
