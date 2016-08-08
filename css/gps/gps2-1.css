@@ -1,0 +1,19 @@
+.column-1 {
+  float:left;
+  display: inline-block;
+  width:50%;
+  color:blue;
+  font-family:serif;
+  background-image:url("http://orig10.deviantart.net/d955/f/2010/187/b/4/oo_return_of_the_octo_cat_oo_by_esserawks.jpg")
+}
+.column-2 {
+  display: inline-block;
+  float:left;
+  width:50%;
+  color:red;
+  font-family:sans-serif;
+}
+footer {
+  width:100%;
+  clear:both;
+}
