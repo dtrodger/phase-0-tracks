@@ -4,36 +4,47 @@
 # When there's more than one suspect who could have
 # committed the crime, add additional calls to prove it.
 
-# "iNvEsTiGaTiOn".<???>
+puts "iNvEsTiGaTiOn".swapcase
 # => “InVeStIgAtIoN”
 
-# "zom".<???>
+puts "zom".sub(/o/, "oo")
+puts "zom".replace("zoom")
+puts "zom".insert(1,"o")
 # => “zoom”
 
-# "enhance".<???>
+puts "enhance".center(17)
 # => "    enhance    "
 
-# "Stop! You’re under arrest!".<???>
+puts "Stop! You’re under arrest!".upcase
+puts "Stop! You’re under arrest!".tr("abcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 # => "STOP! YOU’RE UNDER ARREST!"
 
-# "the usual".<???>
+puts "the usual" << " suspects"
+puts "the usual".insert(9, " suspects")
+puts "the usual".ljust(18, " suspects")
 #=> "the usual suspects"
 
-# " suspects".<???>
+puts " suspects".rjust(18, "the usual")
+puts " suspects".prepend("the usual")
 # => "the usual suspects"
 
-# "The case of the disappearing last letter".<???>
+puts "The case of the disappearing last letter".slice(0..38)
+puts "The case of the disappearing last letter".chop
+puts "The case of the disappearing last letter".chomp("r")
+puts "The case of the disappearing last letter".delete "r"
 # => "The case of the disappearing last lette"
 
-# "The mystery of the missing first letter".<???>
+
+puts "The mystery of the missing first letter".slice(1..39)
+puts "The case of the disappearing last letter".delete "T"
 # => "he mystery of the missing first letter"
 
-# "Elementary,    my   dear        Watson!".<???>
+puts "Elementary,    my   dear        Watson!".squeeze
 # => "Elementary, my dear Watson!"
 
-# "z".<???>
+puts "z".bytes
 # => 122 
-# (What is the significance of the number 122 in relation to the character z?)
+# 122 is an array of the bytes in z using UTF-8 encoding
 
-# "How many times does the letter 'a' appear in this string?".<???>
+puts "How many times does the letter 'a' appear in this string?".count("a")
 # => 4
