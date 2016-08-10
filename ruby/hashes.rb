@@ -10,5 +10,11 @@ end
 
 # method that takes  string as an input and returns true if the input is yes, false if the input is no and nil if the input is neither yes or no
 
+def is_integer input
+	true if Integer(input) rescue false
+end
 
 #UI
+
+puts is_integer("d")
+puts is_integer("2")
