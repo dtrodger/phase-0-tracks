@@ -1,5 +1,3 @@
-## PLEASE READ! I feel like the amount of methods I am defining is overkill because the program would be shorter if I hard coded the logic in the UI seciotn, but I wanted to focus on functional decomposition. I'd appreciate if you could comment on the relevance of my methods. Would you use all the methods I wrote, or would you save some of the logic for the UI section? Thanks.
-
 
 # method with a key a value and a hash as inputs and the key and value to the hash then returns the hash
 
@@ -146,7 +144,7 @@ loop do
 		if key == :age || key == :num_child
 
 			until is_integer(new_value)
-				print "ERROR Enter an integer for #{key_str}'s value: "
+				print "\nERROR Enter an integer for #{key_str}'s value: "
 				new_value = gets.chomp
 				new_value
 			end
@@ -157,7 +155,7 @@ loop do
 			print true_false(new_value)
 
 			while true_false(new_value) == nil
-				puts "ERROR Enter yes or no to determine #{key_str}'s value: "
+				puts "\nERROR Enter yes or no to determine #{key_str}'s value: "
 				new_value = gets.chomp
 				new_value = new_value.downcase
 				new_value
