@@ -26,7 +26,7 @@ end
 
 #UI
 
-#the clients name, age, number of children, decor theme, cats or dogs, favorite color, vintage or modern"
+#the clients name, age, number of children, decor theme, cats or dogs, favorite color, fireplace, vintage or modern"
 
 client_hash = Hash.new
 
@@ -84,6 +84,62 @@ end
 cats_or_dogs = true_false(cats_or_dogs)
 
 client_hash = key_vale_to_hash(:cats_or_dogs, cats_or_dogs, client_hash)
+
+# ask the user if there is a fireplace
+
+print "Fireplace (Yes or No): "
+fireplace = gets.chomp
+fireplace = fireplace.downcase
+
+while true_false(fireplace) == nil
+	print "(Error Enter Yes or No) Fireplace: "
+	fireplace = gets.chomp
+	fireplace = fireplace.downcase
+	fireplace
+end
+
+fireplace = true_false(fireplace)
+
+client_hash = key_vale_to_hash(:fireplace, fireplace, client_hash)
+
+print "Vintage or Modern: "
+vintage_or_modern = gets.chomp
+
+client_hash = key_vale_to_hash(:vintage_or_modern, vintage_or_modern, client_hash)
+
+puts "\n\n\nUgly printout of hash bellow"
+puts client_hash
+
+puts "\n\n\nUser frienly printout of hash bellow"
+client_hash.each {|key, value| puts "#{key} is #{value}"}
+
+keys = client_hash.keys
+
+loop do
+	puts "\n\n\nKeys Include:"
+	client_hash.each_key {|key| puts key}
+	print "Enter a key name to edit the value or 'done' to exit: "
+	key = gets.chomp
+
+	until keys.include? key.to_sym or key == "done"
+		print "(Error Invalid Entry) Enter a key name to edit the value or 'done' to exit: "
+		key = gets.chomp
+	end
+
+	if key == "done"
+		break
+	else
+		print "Enter the new value: "
+		new_value = gets.chomp
+		key = key.to_sym
+		client_hash[key] = new_value
+	end
+
+	puts "\n\n\nNew Values"
+	client_hash.each {|key, value| puts "#{key} is #{value}"}
+end
+
+
 
 
 
