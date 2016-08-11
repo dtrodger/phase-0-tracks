@@ -1,7 +1,9 @@
+## PLEASE READ! I feel like the amount of methods I am defining is overkill because the program would be shorter if I hard coded the logic in the UI seciotn, but I wanted to focus on functional decomposition. I'd appreciate if you could comment on the relevance of my methods. Would you use all the methods I wrote, or would you save some of the logic for the UI section? Thanks.
+
 
 # method with a key a value and a hash as inputs and the key and value to the hash then returns the hash
 
-def key_vale_to_hash (key, value, hash)
+def key_val_to_hash (key, value, hash)
 	hash[key] = value
 	hash
 end
@@ -24,9 +26,18 @@ def is_integer input
 	true if Integer(input) rescue false
 end
 
-#UI
+# method that changes the value of a dictionary key
 
-#the clients name, age, number of children, decor theme, cats or dogs, favorite color, fireplace, vintage or modern"
+def key_in_dict(key, hash)
+	keys = hash.keys
+	if keys.include? key
+		true
+	else
+		false
+	end
+end
+
+#UI
 
 client_hash = Hash.new
 
@@ -35,47 +46,47 @@ client_hash = Hash.new
 print "Name: "
 name = gets.chomp
 
-client_hash = key_vale_to_hash(:name, name, client_hash)
+client_hash = key_val_to_hash(:name, name, client_hash)
 
 print "Age: "
 age = gets.chomp
 
 until is_integer(age)
-	print "(Error Enter an Integer) Age: "
+	print "ERROR Enter an integer for age: "
 	age = gets.chomp
 	age
 end
 
-client_hash = key_vale_to_hash(:age, age, client_hash)
+client_hash = key_val_to_hash(:age, age, client_hash)
 
 # ask user for number of children
 
-print "Number of Children: "
+print "Number of children: "
 num_child = gets.chomp
 
 until is_integer(num_child)
-	print "(Error Enter an Integer) Number of Children: "
+	print "ERROR Enter an interger for number of children: "
 	num_child = gets.chomp
 	num_child
 end
 
 # ask user for a decor theme
 
-client_hash = key_vale_to_hash(:num_child, num_child, client_hash)
+client_hash = key_val_to_hash(:num_child, num_child, client_hash)
 
-print "Decor Theme: "
+print "Decor theme: "
 theme = gets.chomp
 
-client_hash = key_vale_to_hash(:theme, theme, client_hash)
+client_hash = key_val_to_hash(:theme, theme, client_hash)
 
 # ask user if they have cats or dogs
 
-print "Cats or Dogs (Yes or No): "
+print "Cats or dogs (yes or no): "
 cats_or_dogs = gets.chomp
 cats_or_dogs = cats_or_dogs.downcase
 
 while true_false(cats_or_dogs) == nil
-	print "(Error Enter Yes or No) Cats or Dogs: "
+	print "ERROR Enter yes or no for cats or dogs: "
 	cats_or_dogs = gets.chomp
 	cats_or_dogs = cats_or_dogs.downcase
 	cats_or_dogs
@@ -83,16 +94,16 @@ end
 
 cats_or_dogs = true_false(cats_or_dogs)
 
-client_hash = key_vale_to_hash(:cats_or_dogs, cats_or_dogs, client_hash)
+client_hash = key_val_to_hash(:cats_or_dogs, cats_or_dogs, client_hash)
 
 # ask the user if there is a fireplace
 
-print "Fireplace (Yes or No): "
+print "Fireplace (yes or no): "
 fireplace = gets.chomp
 fireplace = fireplace.downcase
 
 while true_false(fireplace) == nil
-	print "(Error Enter Yes or No) Fireplace: "
+	print "ERROR Enter yes or no for fireplace: "
 	fireplace = gets.chomp
 	fireplace = fireplace.downcase
 	fireplace
@@ -100,44 +111,81 @@ end
 
 fireplace = true_false(fireplace)
 
-client_hash = key_vale_to_hash(:fireplace, fireplace, client_hash)
+client_hash = key_val_to_hash(:fireplace, fireplace, client_hash)
 
-print "Vintage or Modern: "
+# ask the user if they prefer vintage or modern
+
+print "Vintage or modern: "
 vintage_or_modern = gets.chomp
 
-client_hash = key_vale_to_hash(:vintage_or_modern, vintage_or_modern, client_hash)
+client_hash = key_val_to_hash(:vintage_or_modern, vintage_or_modern, client_hash)
 
-puts "\n\n\nUgly printout of hash bellow"
+# print the hash
+
+puts "\n\nUgly printout of hash:"
 puts client_hash
 
-puts "\n\n\nUser frienly printout of hash bellow"
+puts "\n\nUser frienly printout of hash:"
 client_hash.each {|key, value| puts "#{key} is #{value}"}
 
-keys = client_hash.keys
+# ask user if they want to change a hash value
 
 loop do
-	puts "\n\n\nKeys Include:"
-	client_hash.each_key {|key| puts key}
-	print "Enter a key name to edit the value or 'done' to exit: "
+	print "\n\nEnter a key name to edit the keys value or 'done' to exit: "
 	key = gets.chomp
 
-	until keys.include? key.to_sym or key == "done"
-		print "(Error Invalid Entry) Enter a key name to edit the value or 'done' to exit: "
-		key = gets.chomp
-	end
+	break if key == "done"
+	
+	key = key.to_sym
 
-	if key == "done"
-		break
-	else
+	if key_in_dict(key, client_hash)
 		print "Enter the new value: "
 		new_value = gets.chomp
-		key = key.to_sym
+		key_str = key.to_s
+
+		if key == :age || key == :num_child
+
+			until is_integer(new_value)
+				print "ERROR Enter an integer for #{key_str}'s value: "
+				new_value = gets.chomp
+				new_value
+			end
+
+		elsif key == :cats_or_dogs || key == :fireplace
+			new_value = new_value.downcase
+			print new_value
+			print true_false(new_value)
+
+			while true_false(new_value) == nil
+				puts "ERROR Enter yes or no to determine #{key_str}'s value: "
+				new_value = gets.chomp
+				new_value = new_value.downcase
+				new_value
+			end
+
+			new_value = true_false(new_value)
+		end
+
 		client_hash[key] = new_value
+	else
+		puts "\n\nERROR Not a valid key"
+		puts "Keys Include:"
+		client_hash.each_key {|key| puts key}
+		redo
 	end
 
-	puts "\n\n\nNew Values"
+	puts "\n\nNew hash output:"
 	client_hash.each {|key, value| puts "#{key} is #{value}"}
 end
+
+
+
+
+
+
+
+
+
 
 
 
