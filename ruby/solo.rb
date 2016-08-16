@@ -18,7 +18,7 @@ class Car
 
 	# Method to output attributes in one call
 	def about
-		puts "\nMake: " + @make
+		puts "Make: " + @make
 		puts "Model: " + @model
 		puts "Miles: " + @miles.to_s
 		puts "Type: " + @type
@@ -74,12 +74,22 @@ def is_integer input
 	true if Integer(input) rescue false
 end
 
-cars = Array.new
+# Test Car methods
+
+# test_car = Car.new("Audi", "A6", 19000, "Sedan", "Red", 2014, true)
+# test_car.about
+# test_car.rev_engine
+# test_car.used_invert
+# puts test_car.used
+# puts test_car.drive(100)
+# puts test_car.miles
 
 # USER INTERFACE
 
+cars = Array.new
+
 loop do
-	print "Enter the make of the car or 'q' to stop building cars: "
+	print "Enter the make of a new car or 'q' to stop building cars: "
 	make_or_break = gets.chomp
 	break if make_or_break.downcase == 'q'
 	new_car_values = Hash.new
@@ -128,13 +138,7 @@ loop do
 	cars << new_car
 end
 
-cars.each {|car| car.about}
-
-
-
-
-
-
-
-
-
+cars.each do |car|
+	puts "\nCar Instance " + (cars.index(car) + 1).to_s
+	car.about
+end
