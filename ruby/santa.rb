@@ -27,7 +27,7 @@ end
 santas = []
 example_genders = ["female", "agender", "N/A", "female", "bigender", "male", "gender fluid"]
 example_ethnicities = ["Arab", "Azerbaijan", "Dutch", "Han Chinese", "Icelandic", "Mongolian", "Scottish"]
-example_genders.length.times {|i| santas << Santa.new(example_genders[i], example_ethnicities[i])}
+example_genders.length.times {santas << Santa.new(example_genders[rand(0..example_genders.length)], example_ethnicities[rand(0..example_genders.length)])}
 santas.each {|santa| santa.about}
 
 
