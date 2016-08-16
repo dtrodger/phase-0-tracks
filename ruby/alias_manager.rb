@@ -9,32 +9,25 @@ def reverseName (string)
 	end
 end
 
-
 def vowelSwitch (string)
 	output = ""
 	vowels = ['a','e','i','o','u']
 	string.split("").each do |i|
-
 		if vowels.include? i
 			index = vowels.index(i)
-
 			if index == 4
 				index = 0
 			else
 				index += 1
 			end
-
 			next_vowel = vowels[index]
 			output += next_vowel
 		else
 			output += i
 		end
 	end
-
 	output
-
 end
-
 
 changed_names = []
 print "Enter a name to mutate or 'quit' to stop the program: "
