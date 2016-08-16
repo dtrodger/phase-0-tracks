@@ -25,12 +25,11 @@ class Santa
 end
 
 santas = []
-santas << Santa.new("agender", "black")
-santas << Santa.new("female", "Latino")
-santas << Santa.new("bigender", "white")
-santas << Santa.new("male", "Japanese")
-santas << Santa.new("female", "prefer not to say")
-santas << Santa.new("gender fluid", "Mystical Creature (unicorn)")
-santas << Santa.new("N/A", "N/A")
-
+example_genders = ["female", "agender", "N/A", "female", "bigender", "male", "gender fluid"]
+example_ethnicities = ["Arab", "Azerbaijan", "Dutch", "Han Chinese", "Icelandic", "Mongolian", "Scottish"]
+example_genders.length.times {|i| santas << Santa.new(example_genders[i], example_ethnicities[i])}
 santas.each {|santa| santa.about}
+
+
+
+
