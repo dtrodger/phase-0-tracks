@@ -51,7 +51,17 @@ puppy.fetch("ball")
 puppy.speak(5)
 puppy.roll_over
 puts puppy.dog_years(5)
-puppy.jump
+puppy.jump(50)
+
+trains = []
+
+(0..50).each {trains << Train.new(rand(0.300), rand(50..130))}
+
+trains.each do |train|
+	train.add_rider
+	train.horn
+	train.top_speed
+end
 
 
 
