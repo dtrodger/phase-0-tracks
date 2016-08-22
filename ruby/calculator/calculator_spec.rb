@@ -24,4 +24,12 @@ describe Calculator do
   it "multiplies two integers" do
     expect(calculator.multiply(2,3)).to eq 6
   end
+
+  it "divides two integers" do
+    expect(calculator.divide(6,2)).to eq 3
+  end
 end
+
+#terminal commands
+#rspec <filename>
+#rspec -fd <filename>
