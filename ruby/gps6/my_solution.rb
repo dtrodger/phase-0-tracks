@@ -21,7 +21,7 @@ class VirusPredictor
   #calls predicted_deaths and speed_of_spread
   def virus_effects
     print predicted_deaths
-    puts speed_of_spread
+    print speed_of_spread
   end
 
   private
@@ -31,21 +31,14 @@ class VirusPredictor
   end
 
   def predicted_deaths
-    # predicted deaths is solely based on population density
-    if @population_density >= 200
-      number_of_deaths = num_deaths(0.4)
-    elsif @population_density >= 150
-      number_of_deaths = num_deaths(0.3)
-    elsif @population_density >= 100
-      number_of_deaths = num_deaths(0.2)
-    elsif @population_density >= 50
-      number_of_deaths = num_deaths(0.1)
-    else
-      number_of_deaths = num_deaths(0.05)
+    population_hash = {200 => 0.4, 150 => 0.3, 100 => 0.2, 50 => 0.1, 0 => 0.05}
+    population_hash.each do |pop_density, multi|
+      if @population_density >= pop_density
+        number_of_deaths = num_deaths(multi)
+        return "#{@state} will lose #{number_of_deaths} people in this outbreak"
+        break
+      end
     end
-
-    "#{@state} will lose #{number_of_deaths} people in this outbreak"
-
   end
 
   def speed_of_spread #in months
@@ -87,8 +80,10 @@ end
 # california.virus_effects
 
 # alaska = VirusPredictor.new("Alaska", STATE_DATA["Alaska"][:population_density], STATE_DATA["Alaska"][:population])
+# alaska.virus_effects
 
 STATE_DATA.each do |state, population_hash|
   new_state = VirusPredictor.new(state, population_hash[:population_density], population_hash[:population])
   new_state.virus_effects
 end
+
