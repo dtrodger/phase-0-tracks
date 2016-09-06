@@ -91,15 +91,15 @@ def create_venue(venue_name, address, venue_capacity, owner_id)
 end
 
 
-# def update_venue(venue_id, venue_name, address, venue_capacity, owner_id)
-#   $db.execute("UPDATE venues SET venue_name='#{venue_name}', address='#{address}', venue_capacity=#{venue_capacity}, owner_id=#{owner_id} WHERE venue_id=#{venue_id}")
-#   puts "#{venue_name} updated"
-# end
+def update_venue(venue_id, venue_name, address, venue_capacity, owner_id)
+  $db.execute("UPDATE venues SET venue_name='#{venue_name}', address='#{address}', venue_capacity=#{venue_capacity}, owner_id=#{owner_id} WHERE venue_id=#{venue_id}")
+  puts "#{venue_name} updated"
+end
 
-# def delete_venue(venue_id)
-#   $db.execute("DELETE FROM venues WHERE venue_id = #{venue_id})")
-#   puts "Venue with ID #{venue_id} deleted from venue table"
-# end
+def delete_venue(venue_id)
+  $db.execute("DELETE FROM venues WHERE venue_id = #{venue_id})")
+  puts "Venue with ID #{venue_id} deleted from venue table"
+end
 
 # def show_all_venues
 #   venues = $db.execute("SELECT * FROM venues")
