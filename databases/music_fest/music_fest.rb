@@ -84,13 +84,11 @@ def show_all_owners
     puts "The owners table is empty."
   end
 end
-create_owner("Bill", "Show", "Joes Shows", "123 fake street", "1847-431-0970", "john@srphoto.com")
-show_all_owners()
 
-# def create_venue(venue_name, address, venue_capacity, owner_id)
-#   $db.execute("INSERT INTO venues (venue_name, address, venue_capacity, owner_id) VALUES ('#{@venue_name}', '#{@address}', #{@venue_capacity}, #{@owner_id})")
-#   puts "New venue created"
-# end
+def create_venue(venue_name, address, venue_capacity, owner_id)
+  $db.execute("INSERT INTO venues (venue_name, address, venue_capacity, owner_id) VALUES ('#{venue_name}', '#{address}', #{venue_capacity}, #{owner_id})")
+  puts "New venue created"
+end
 
 
 # def update_venue(venue_id, venue_name, address, venue_capacity, owner_id)
