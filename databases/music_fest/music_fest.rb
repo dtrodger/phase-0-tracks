@@ -72,10 +72,12 @@ end
 
 update_owner(1, "Bill", "Show", "Joes Shows", "123 fake street", "1847-431-0970", "john@srphoto.com")
 
-# def delete_owner(owner_id)
-#   $db.execute("DELETE FROM owners WHERE owner_id = #{owner_id})")
-#   puts "Owner with ID #{owner_id} deleted from owners table"
-# end
+def delete_owner(owner_id)
+  $db.execute("DELETE FROM owners WHERE owner_id = #{owner_id}")
+  puts "Owner with ID #{owner_id} deleted from owners table"
+end
+
+delete_owner(1)
 
 # def show_all_owners
 #   owners = $db.execute("SELECT * FROM owners")
