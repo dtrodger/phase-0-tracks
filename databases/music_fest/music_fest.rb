@@ -81,11 +81,6 @@ def show_all_owners
   end
 end
 
-create_owner("Bill", "Show", "Joes Shows", "123 fake street", "1847-431-0970", "john@srphoto.com")
-# show_all_owners()
-update_owner(1,"vill", "Show", "Joesvdvs", "123 fake street", "1847-431-0970", "john@srphoto.com")
-# show_all_owners()
-
 def create_venue(venue_name, address, venue_capacity, owner_id)
   $db.execute("INSERT INTO venue (venue_name, address, venue_capacity, owner_id) VALUES ('#{venue_name}', '#{address}', #{venue_capacity}, #{owner_id})")
 end
@@ -104,13 +99,6 @@ def show_all_venues
     puts "\nThe venue table is empty."
   end
 end
-
-create_venue("this venue", "123 street", 100, 1)
-# show_all_venues()
-update_venue(1, "that venue", "888 street", 200, 1)
-# show_all_venues()
-# delete_record("venue", 1)
-# show_all_venues()
 
 def create_band (band_name, manager_name, email, phone)
   $db.execute("INSERT INTO band (band_name, manager_name, phone, email) VALUES ('#{band_name}', '#{manager_name}', '#{phone}', '#{email}')")
@@ -156,225 +144,31 @@ def show_all_shows
   end
 end
 
-create_show(1, 1, "2:00PM")
-show_all_shows()
-update_show(1,1,1,"3:00P:")
-show_all_shows()
-delete_record("show",1)
-show_all_shows()
 
+loop do
+  puts "\nWelcome to the Music Festivle database (enter EXIT at anytime to stop the program)"
+  puts "\nThe names of tables in this database include (owner, venue, band, show)"
+  print "To view the contents of a table enter and gain the ability to insert and delete values from it, enter the tables name: "
+  table_name = gets.chomp
 
+  tables = ['owners', 'venues', 'bands', 'shows']
+  table_actions = ["VIEW", "INSERT", "DELETE"]
 
+  break if table_name == "EXIT"
 
+  until tables.include?(table_name)
+    print "INVALID INPUT - To view the contents of a table enter and gain the ability to insert and delete values from it, enter the tables name (owner, venue, band, show): "
+    table_name = gets.chomp
+  end
 
+  print "To view the contents of "+table_name+" enter 'VIEW'. To insert a new record, enter 'INSERT'. To delete a record, enter 'DELETE'. The access a different table, enter 'MAIN MENU'. to exit the program, enter 'EXIT': "
+  table_action = gets.chomp
 
+  break if table_action == "EXIT"
+
+  if table_action == "MAIN MENU"
+    redo
+  end
+end
 
   
-
-
-
-# loop do
-#   puts "\nWelcome to the Music Festivle database (enter EXIT at anytime to stop the program)"
-#   puts "\nThe names of tables in this database include (owners, venues, bands, shows)"
-#   print "To view the contents of a table enter and gain the ability to insert and delete values from it, enter the tables name: "
-#   table_name = gets.chomp
-
-#   tables = ['owners', 'venues', 'bands', 'shows']
-#   table_actions = ["VIEW", "INSERT", "DELETE"]
-
-#   break if table_name == "EXIT"
-
-#   until tables.include?(table_name)
-#     print "INVALID INPUT - To view the contents of a table enter and gain the ability to insert and delete values from it, enter the tables name (owners, venues, bands, shows): "
-#     table_name = gets.chomp
-#   end
-
-#   print "To view the contents of "+table_name+" enter VIEW, to insert a new record, enter INSERT, to delete a record, enter DELETE, to exit the program, enter EXIT: "
-#   table_action = gets.chomp
-
-#   break if table_name == "EXIT"
-
-#   until table_actions.include?(table_action)
-#     print "INVALID INPUT - To view the contents of "+table_name+" enter VIEW, to insert a new record, enter INSERT, to delete a record, enter DELETE, to exit the program, enter EXIT: "
-#   table_action = gets.chomp
-#   print "h1"
-#   puts "FJDKLFJD"
-#   end
-
-#   if table_action == "VIEW"
-#     if table_name == "owners"
-#       puts "FJDKSLFJDLKS"
-#       puts table_name
-#       show_all_owners()
-#     elsif table_name == "venues"
-#       show_all_venues()
-#     elsif table_name == "bands"
-#       show_all_bands()
-#     else
-#       show_all_shows()
-#     end
-#   end
-
-#   if table_action == "INSERT"
-#     if table_name == "owners"
-#       print "Enter venue owner first name: "
-#       f_name = gets.chomp
-
-#       print "Enter venue owner last name: "
-#       l_name = gets.chomp
-
-#       print "Enter venue business name: "
-#       business_name = gets.chomp
-
-#       print "Enter venue address: "
-#       office_address = gets.chomp
-
-#       print "Enter venue phone number: "
-#       phone = gets.chomp
-
-#       print "Enter venue email: "
-#       email = gets.chomp
-
-#       new_owner = Owners.new(f_name, l_name, business_name, office_address, phone, email)
-#       OWNERS.append(new_owner)
-
-#     end
-
-#     if table_name == "venues"
-#       print "Enter venue name: "
-#       venue_name = gets.chomp
-
-#       print "Enter venue address: "
-#       address = gets.chomp
-
-#       print "Enter venue capacity: "
-#       venue_capacity = gets.chomp
-
-#       print "Enter venue owner id: "
-#       owner_id = gets.chomp
-
-#       new_venue = Venues.new(venue_name, address, venue_capacity.to_i, owner_id.to_i)
-#       VENUE.append(new_venue)
-
-#     end
-
-#     if table_name == "bands"
-#       print "Enter band name: "
-#       band_name = gets.chomp
-
-#       print "Enter manager name: "
-#       manager_name = gets.chomp
-
-#       print "Enter band email: "
-#       email = gets.chomp
-
-#       print "Enter band phone number: "
-#       phone = gets.chomp
-
-#       new_band = Bands.new(band_name, manager_name, email, phone)
-#       BANDS.append(new_band)
-#     end
-
-#     if table_name == "shows"
-#       print "Enter the venue ID: "
-#       venue_id = gets.chomp
-
-#       print "Enter the band ID: "
-#       band_id = gets.chomp
-
-#       print "Enter the scheduled time: "
-#       scheduled_time = gets.chomp
-
-#       new_show = Shows.new(venue_id.to_i, band_id.to_i, scheduled_time)
-#       SHOWS.append(new_show)
-#     end
-#   elsif table_action == "UPDATE"
-#     if table_name == "owners"
-#       print "Enter the owner id: "
-#       owner_id = gets.chomp
-
-#       print "Enter venue owner first name: "
-#       f_name = gets.chomp
-
-#       print "Enter venue owner last name: "
-#       l_name = gets.chomp
-
-#       print "Enter venue business name: "
-#       business_name = gets.chomp
-
-#       print "Enter venue address: "
-#       office_address = gets.chomp
-
-#       print "Enter venue phone number: "
-#       phone = gets.chomp
-
-#       print "Enter venue email: "
-#       email = gets.chomp
-
-#       new_business = Owners.new(f_name, l_name, business_name, office_address, phone, email)
-#     end
-
-#     if table_name == "venues"
-#       print "Enter venue name: "
-#       venue_name = gets.chomp
-
-#       print "Enter venue address: "
-#       address = gets.chomp
-
-#       print "Enter venue capacity: "
-#       venue_capacity = gets.chomp
-
-#       print "Enter venue owner id: "
-#       owner_id = gets.chomp
-
-#       new_venue = Venues.new(venue_name, address, venue_capacity.to_i, owner_id.to_i)
-#     end
-
-#     if table_name == "bands"
-#       print "Enter band name: "
-#       band_name = gets.chomp
-
-#       print "Enter manager name: "
-#       manager_name = gets.chomp
-
-#       print "Enter band email: "
-#       email = gets.chomp
-
-#       print "Enter band phone number: "
-#       phone = gets.chomp
-
-#       new_band = Bands.new(band_name, manager_name, email, phone)
-#     end
-
-#     if table_name == "shows"
-#       print "Enter the venue ID: "
-#       venue_id = gets.chomp
-
-#       print "Enter the band ID: "
-#       band_id = gets.chomp
-
-#       print "Enter the scheduled time: "
-#       scheduled_time = gets.chomp
-
-#       new_show = Shows.new(venue_id.to_i, band_id.to_i, scheduled_time)
-#     end
-#   end
-# end
-
-
-
-# # tom = Owners.new("Bill", "Show", "Joes Shows", "123 fake street", "1847-431-0970", "john@srphoto.com")
-# # tom.update(1, "Bill", "kill", "Joes Shows", "123dsadasdtreet", "1847-431-0970", "john@srphoto.com")
-
-# # venue1 = Venues.new("this venue", "fjdksfjsdl", 100, 1)
-# # venue1.update(1, "that venue", "bo", 200, 1)
-
-
-# # guest.update(1,"bye", "thee", "1847-rerere", "joccsdsrphoto.com")
-
-
-# # show.update(1,1,1,"$:00P:")
-
-
-
-
