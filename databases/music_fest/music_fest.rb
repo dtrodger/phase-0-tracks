@@ -63,12 +63,14 @@ def create_owner(f_name, l_name, business_name, office_address, phone, email)
   puts "New owner created"
 end
 
-create_owner("Bill", "Show", "Joes Shows", "123 fake street", "1847-431-0970", "john@srphoto.com")
+create_owner("Tom", "Show", "Joes Shows", "123 Apple Street", "1847-431-0970", "john@srphoto.com")
 
-# def update_owner(owner_id, f_name, l_name, business_name, office_address, phone, email)
-#   $db.execute("UPDATE owners SET f_name='#{f_name}', l_name='#{l_name}', business_name='#{business_name}', office_address='#{office_address}', phone='#{phone}', email='#{email}' WHERE owner_id=#{owner_id}")
-#   puts "#{business_name} updated"
-# end
+def update_owner(owner_id, f_name, l_name, business_name, office_address, phone, email)
+  $db.execute("UPDATE owners SET f_name='#{f_name}', l_name='#{l_name}', business_name='#{business_name}', office_address='#{office_address}', phone='#{phone}', email='#{email}' WHERE owner_id=#{owner_id}")
+  puts "#{business_name} updated"
+end
+
+update_owner(1, "Bill", "Show", "Joes Shows", "123 fake street", "1847-431-0970", "john@srphoto.com")
 
 # def delete_owner(owner_id)
 #   $db.execute("DELETE FROM owners WHERE owner_id = #{owner_id})")
