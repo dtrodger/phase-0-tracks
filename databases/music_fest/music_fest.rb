@@ -101,13 +101,16 @@ def delete_venue(venue_id)
   puts "Venue with ID #{venue_id} deleted from venue table"
 end
 
-# def show_all_venues
-#   venues = $db.execute("SELECT * FROM venues")
-#   venues.each do |venue|
-#    puts "\n\nID: #{venue['venue_id']}\nVenue Name: #{venue['venue_name']}\nVenue Address: #{venue['address']}\nMax Capacity: #{venue['venue_capacity']}\nOwner ID: #{venue['owner_id']}"
-#   end
-#   puts "End of output. If there was no output, the tables is empty."
-# end
+def show_all_venues
+  venues = $db.execute("SELECT * FROM venues")
+  if owners.any?
+    venues.each do |venue|
+     puts "\n\nID: #{venue['venue_id']}\nVenue Name: #{venue['venue_name']}\nVenue Address: #{venue['address']}\nMax Capacity: #{venue['venue_capacity']}\nOwner ID: #{venue['owner_id']}"
+    end
+  else
+    puts "The venues table is empty."
+  end
+end
 
 # def create_band (band_name, manager_name, email, phone)
 #   $db.execute("INSERT INTO bands (band_name, manager_name, phone, email) VALUES ('#{@band_name}', '#{@manager_name}', '#{@phone}', '#{@email}')")
