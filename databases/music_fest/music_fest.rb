@@ -77,7 +77,7 @@ def show_all_owners
      puts "\nID: #{owner['owner_id']}\nName: #{owner['f_name']} #{owner['l_name']}\nBusiness Name: #{owner['business_name']}\nOffice Address: #{owner['office_address']}\nPhone: #{owner['phone']}\nEmail: #{owner['email']}\n"
     end
   else
-    puts "The owner table is empty."
+    puts "\nThe owner table is empty."
   end
 end
 
@@ -101,7 +101,7 @@ def show_all_venues
      puts "\n\nID: #{venue['venue_id']}\nVenue Name: #{venue['venue_name']}\nVenue Address: #{venue['address']}\nMax Capacity: #{venue['venue_capacity']}\nOwner ID: #{venue['owner_id']}"
     end
   else
-    puts "The venue table is empty."
+    puts "\nThe venue table is empty."
   end
 end
 
@@ -128,10 +128,12 @@ def show_all_bands
     puts "\n\nID: #{band['band_id']}\nBand Name #{band['band_name']}\nManager: #{band['manager_name']}\nContact Email: #{band['email']}\nContact Phone: #{band['phone']}"
     end
   else
-    puts "The band table is empty."
+    puts "\nThe band table is empty."
   end
 end
 
+create_band("hello", "tom b", "john@srphoto.com", "1847-431-0970")
+update_band(1, "bye", "tom b", "john@srphoto.com", "1847-431-0970")
   
 def create_show (venue_id, band_id, scheduled_time)
    $db.execute("INSERT INTO show (venue_id, band_id, scheduled_time) VALUES (#{venue_id}, #{band_id}, '#{scheduled_time}')")
@@ -150,20 +152,16 @@ def show_all_shows
      puts "\n\nID: #{show['show_id']}\nVenue ID: #{show['venue_id']}\nBand ID: #{show['band_id']}\nScheduled Time: #{show['scheduled_time']}"
     end
   else
-    puts "End of output. If there was no output, the tables is empty."
+    puts "\nThe show table is empty."
   end
 end
 
-# tom.update(1, "Bill", "kill", "Joes Shows", "123dsadasdtreet", "1847-431-0970", "john@srphoto.com")
-
-# venue1 = Venues.new("this venue", "fjdksfjsdl", 100, 1)
-# venue1.update(1, "that venue", "bo", 200, 1)
-
-# guest = Bands.new("hello", "thee", "1847-rerere", "john@srphoto.com")
-# guest.update(1,"bye", "thee", "1847-rerere", "joccsdsrphoto.com")
-
-# show = Shows.new(1, 1, "2:00PM")
-# show.update(1,1,1,"$:00P:")
+create_show(1, 1, "2:00PM")
+show_all_shows()
+update_show(1,1,1,"3:00P:")
+show_all_shows()
+delete_record("show",1)
+show_all_shows()
 
 
 
