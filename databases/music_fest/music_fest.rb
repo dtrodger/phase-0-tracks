@@ -63,29 +63,29 @@ def create_owner(f_name, l_name, business_name, office_address, phone, email)
   puts "New owner created"
 end
 
-create_owner("Tom", "Show", "Joes Shows", "123 Apple Street", "1847-431-0970", "john@srphoto.com")
-
 def update_owner(owner_id, f_name, l_name, business_name, office_address, phone, email)
   $db.execute("UPDATE owners SET f_name='#{f_name}', l_name='#{l_name}', business_name='#{business_name}', office_address='#{office_address}', phone='#{phone}', email='#{email}' WHERE owner_id=#{owner_id}")
   puts "#{business_name} updated"
 end
-
-update_owner(1, "Bill", "Show", "Joes Shows", "123 fake street", "1847-431-0970", "john@srphoto.com")
 
 def delete_owner(owner_id)
   $db.execute("DELETE FROM owners WHERE owner_id = #{owner_id}")
   puts "Owner with ID #{owner_id} deleted from owners table"
 end
 
-delete_owner(1)
 
-# def show_all_owners
-#   owners = $db.execute("SELECT * FROM owners")
-#   owners.each do |owner|
-#    puts "\n\nID: #{owner['owner_id']}\nName: #{owner['f_name']} #{owner['l_name']}\nBusiness Name: #{owner['business_name']}\nOffice Address: #{owner['office_address']}\nPhone: #{owner['phone']}\nEmail: #{owner['email']}\n"
-#   end
-#   puts "End of output. If there was no output, the tables is empty."
-# end
+def show_all_owners
+  owners = $db.execute("SELECT * FROM owners")
+  if owners.any?
+    owners.each do |owner|
+     puts "\nID: #{owner['owner_id']}\nName: #{owner['f_name']} #{owner['l_name']}\nBusiness Name: #{owner['business_name']}\nOffice Address: #{owner['office_address']}\nPhone: #{owner['phone']}\nEmail: #{owner['email']}\n"
+    end
+  else
+    puts "The owners table is empty."
+  end
+end
+create_owner("Bill", "Show", "Joes Shows", "123 fake street", "1847-431-0970", "john@srphoto.com")
+show_all_owners()
 
 # def create_venue(venue_name, address, venue_capacity, owner_id)
 #   $db.execute("INSERT INTO venues (venue_name, address, venue_capacity, owner_id) VALUES ('#{@venue_name}', '#{@address}', #{@venue_capacity}, #{@owner_id})")
