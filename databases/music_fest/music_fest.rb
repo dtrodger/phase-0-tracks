@@ -92,7 +92,7 @@ def create_venue(venue_name, address, venue_capacity, owner_id)
   $db.execute("INSERT INTO venue (venue_name, address, venue_capacity, owner_id) VALUES ('#{venue_name}', '#{address}', #{venue_capacity}, #{owner_id})")
 end
 
-create_venue("this venue", "fjdksfjsdl", 100, 1)
+# create_venue("this venue", "fjdksfjsdl", 100, 1)
 
 def update_venue(venue_id, venue_name, address, venue_capacity, owner_id)
   $db.execute("UPDATE venue SET venue_name='#{venue_name}', address='#{address}', venue_capacity=#{venue_capacity}, owner_id=#{owner_id} WHERE venue_id=#{venue_id}")
@@ -113,7 +113,7 @@ def create_band (band_name, manager_name, email, phone)
   $db.execute("INSERT INTO band (band_name, manager_name, phone, email) VALUES ('#{band_name}', '#{manager_name}', '#{phone}', '#{email}')")
 end
 
-create_band("bye", "thee", "1847-rerere", "joccsdsrphoto.com")
+# create_band("bye", "thee", "1847-rerere", "joccsdsrphoto.com")
 
 def update_band(band_id, band_name, manager_name, email, phone)
     $db.execute("UPDATE band SET band_name='#{band_name}', manager_name='#{manager_name}', phone='#{phone}', email='#{email}' WHERE band_id=#{band_id}")
@@ -331,10 +331,166 @@ loop do
         puts "New record added to show table"
       end
     end
-  # elsif table_action == "UPDATE"
+  elsif table_action == "UPDATE"
+    if table_name == "owner"
+      owners = $db.execute("SELECT * FROM owner")
+      o_ids = []
+      owners.each do |owner|
+        o_ids << owner['owner_id']
+      end
+      if not o_ids.any?
+        puts "\nNo owners exist in the database so nothing can be updated. If you would like to add an owner navigate to the INSERT function in the owner section."
+        redo
+      else
+        o_ids.each do |id|
+          puts "Owner ID #{id}"
+        end
+        print "Enter an owner_id of the owner to UPDATE: "
+        owner_id = gets.chomp.to_i
 
+        until o_ids.include?(owner_id)
+          puts "INVALID ENTRY"
+          o_ids.each do |id|
+          puts "Owner ID #{id}"
+          end
+          print "Enter an owner_id of the owner to UPDATE: "
+          owner_id = gets.chomp.to_i
+        end
+        
+        print "Enter the venue owner first name: "
+        f_name = gets.chomp
+
+        print "Enter venue owner last name: "
+        l_name = gets.chomp
+
+        print "Enter venue business name: "
+        business_name = gets.chomp
+
+        print "Enter venue address: "
+        office_address = gets.chomp
+
+        print "Enter venue phone number: "
+        phone = gets.chomp
+
+        print "Enter venue email: "
+        email = gets.chomp
+
+        update_owner(owner_id, f_name, l_name, business_name, office_address, phone, email)
+        puts "Record in owner table updated"
+      end
+    end
   end
 end
+
+#     elsif table_name == "venue"
+#       owner_ids = $db.execute("SELECT * FROM owner")
+#       ids = []
+#       owner_ids.each do |owner|
+#         ids << owner['owner_id']
+#       end
+#       if not ids.any?
+#         puts "\nNo owners exist in the database. You cannot INSERT a venue without an owner to associate to it with as a foriegn key. INSERT an onwer into the database from the MAIN MENU, then use that owner's ID as the owner_id while INSERTING a venue"
+#         redo
+#       else
+#         print "Enter venue name: "
+#         venue_name = gets.chomp
+
+#         print "Enter venue address: "
+#         address = gets.chomp
+
+#         print "Enter venue capacity: "
+#         venue_capacity = gets.chomp
+
+#         puts "Enter an owner_id that exists in the database. Reference the following list:"
+#         ids.each do |id|
+#           puts "Owner ID #{id}"
+#         end
+#         print "Enter a venue owner ID: "
+#         owner_id = gets.chomp.to_i
+#         until ids.include?(owner_id)
+#           puts "INVALID ENTRY - Enter an owner_id that exists in the database. Reference the following list:"
+#           ids.each do |id|
+#             puts "Owner ID #{id}"
+#           end
+#           print "Enter a venue owner ID: "
+#           owner_id = gets.chomp.to_i
+#         end
+#         create_venue(venue_name, address, venue_capacity.to_i, owner_id)
+#         puts "New record added to venue table"
+#       end
+#     elsif table_name == "band"
+#         print "Enter band name: "
+#         band_name = gets.chomp
+
+#         print "Enter manager name: "
+#         manager_name = gets.chomp
+
+#         print "Enter band email: "
+#         email = gets.chomp
+
+#         print "Enter band phone number: "
+#         phone = gets.chomp
+
+#         create_band(band_name, manager_name, email, phone)
+#         puts "New record added to band table"
+#     elsif table_name == "show"
+#       venues = $db.execute("SELECT * FROM venue")
+#       v_ids = []
+#       venues.each do |venue|
+#         v_ids << venue['venue_id']
+#       end
+#       bands = $db.execute("SELECT * FROM band")
+#       b_ids = []
+#       bands.each do |band|
+#         b_ids << band['band_id']
+#       end
+#       if not v_ids.any?
+#         puts "\nNo venues exist in the database. You cannot INSERT a show without a venue to associate to it with as a foriegn key. INSERT a venue into the database from the MAIN MENU, then use that venue's ID as the venue_id while INSERTING a show"
+#         redo
+#       elsif not b_ids.any?
+#         puts "\nNo bands exist in the database. You cannot INSERT a show without a band to associate to it with as a foriegn key. INSERT a band into the database from the MAIN MENU, then use that band's ID as the band_id while INSERTING a show"
+#         redo
+#       else
+#         puts "Enter an venue_id that exists in the database. Reference the following list:"
+#         v_ids.each do |id|
+#           puts "Venue ID #{id}"
+#         end
+#         print "Enter a venue ID: "
+#         venue_id = gets.chomp
+#         until v_ids.include?(venue_id)
+#           puts "INVALID ENTRY - Enter an venue_id that exists in the database. Reference the following list:"
+#           v_ids.each do |id|
+#             puts "Venue ID #{id}"
+#           end
+#           print "Enter a venue ID: "
+#           venue_id = gets.chomp.to_i
+#         end
+
+#         puts "Enter an band_id that exists in the database. Reference the following list:"
+#         b_ids.each do |id|
+#           puts "Band ID #{id}"
+#         end
+#         print "Enter a band ID: "
+#         band_id = gets.chomp
+#         until b_ids.include?(band_id)
+#           puts "INVALID ENTRY - Enter an band_id that exists in the database. Reference the following list:"
+#           b_ids.each do |id|
+#             puts "Band ID #{id}"
+#           end
+#           print "Enter a band ID: "
+#           band_id = gets.chomp.to_i
+#         end
+
+#         print "Enter the scheduled time: "
+#         scheduled_time = gets.chomp
+
+#         create_show(venue_id, band_id, scheduled_time)
+#         puts "New record added to show table"
+#       end
+#     end
+
+#   end
+# end
 
 
 
