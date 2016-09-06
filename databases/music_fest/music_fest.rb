@@ -20,7 +20,6 @@ create_owner_table = <<-SQL
 SQL
 
 
-
 create_venue_table = <<-SQL
   CREATE TABLE IF NOT EXISTS venues (
     venue_id INTEGER PRIMARY KEY,
@@ -32,6 +31,7 @@ create_venue_table = <<-SQL
   )
 SQL
 
+
 create_band_table = <<-SQL
   CREATE TABLE IF NOT EXISTS bands (
     band_id INTEGER PRIMARY KEY,
@@ -41,8 +41,6 @@ create_band_table = <<-SQL
     phone VARCHAR(255)
   )
  SQL
-
-
 
 create_show_table = <<-SQL
   CREATE TABLE IF NOT EXISTS shows (
@@ -55,251 +53,330 @@ create_show_table = <<-SQL
   )
 SQL
 
-
 $db.execute(create_owner_table)
 $db.execute(create_venue_table)
 $db.execute(create_band_table)
 $db.execute(create_show_table)
 
-
-class Owners
-
-  attr_reader :f_name, :l_name, :business_name, :office_address, :phone, :email
-
-  def initialize (f_name, l_name, business_name, office_address, phone, email)
-    @f_name = f_name
-    @l_name = l_name
-    @business_name = business_name
-    @office_address = office_address
-    @phone = phone
-    @email = email
-    $db.execute("INSERT INTO owners (f_name, l_name, business_name, office_address, phone, email) VALUES ('#{@f_name}', '#{@l_name}', '#{@business_name}', '#{@office_address}', '#{@phone}', '#{@email}')")
-    puts "New owner created"
-  end
-
-  def update(owner_id, f_name, l_name, business_name, office_address, phone, email)
-    $db.execute("UPDATE owners SET f_name='#{f_name}', l_name='#{l_name}', business_name='#{business_name}', office_address='#{office_address}', phone='#{phone}', email='#{email}' WHERE owner_id=#{owner_id}")
-    puts "#{business_name} updated"
-  end
-
+def create_owner(f_name, l_name, business_name, office_address, phone, email)
+  $db.execute("INSERT INTO owners (f_name, l_name, business_name, office_address, phone, email) VALUES ('#{f_name}', '#{l_name}', '#{business_name}', '#{office_address}', '#{phone}', '#{email}')")
+  puts "New owner created"
 end
 
-class Venues
+create_owner("Bill", "Show", "Joes Shows", "123 fake street", "1847-431-0970", "john@srphoto.com")
 
-  attr_reader :venue_name, :address, :venue_capacity, :owner_id
+# def update_owner(owner_id, f_name, l_name, business_name, office_address, phone, email)
+#   $db.execute("UPDATE owners SET f_name='#{f_name}', l_name='#{l_name}', business_name='#{business_name}', office_address='#{office_address}', phone='#{phone}', email='#{email}' WHERE owner_id=#{owner_id}")
+#   puts "#{business_name} updated"
+# end
 
-  def initialize (venue_name, address, venue_capacity, owner_id)
-    @venue_name = venue_name
-    @address = address
-    @venue_capacity = venue_capacity
-    @owner_id = owner_id
-    $db.execute("INSERT INTO venues (venue_name, address, venue_capacity, owner_id) VALUES ('#{@venue_name}', '#{@address}', #{@venue_capacity}, #{@owner_id})")
-    puts "New venue created"
-  end
+# def delete_owner(owner_id)
+#   $db.execute("DELETE FROM owners WHERE owner_id = #{owner_id})")
+#   puts "Owner with ID #{owner_id} deleted from owners table"
+# end
 
-  def update(venue_id, venue_name, address, venue_capacity, owner_id)
-    $db.execute("UPDATE venues SET venue_name='#{venue_name}', address='#{address}', venue_capacity=#{venue_capacity}, owner_id=#{owner_id} WHERE venue_id=#{venue_id}")
-    puts "#{venue_name} updated"
-  end
+# def show_all_owners
+#   owners = $db.execute("SELECT * FROM owners")
+#   owners.each do |owner|
+#    puts "\n\nID: #{owner['owner_id']}\nName: #{owner['f_name']} #{owner['l_name']}\nBusiness Name: #{owner['business_name']}\nOffice Address: #{owner['office_address']}\nPhone: #{owner['phone']}\nEmail: #{owner['email']}\n"
+#   end
+#   puts "End of output. If there was no output, the tables is empty."
+# end
 
-end
+# def create_venue(venue_name, address, venue_capacity, owner_id)
+#   $db.execute("INSERT INTO venues (venue_name, address, venue_capacity, owner_id) VALUES ('#{@venue_name}', '#{@address}', #{@venue_capacity}, #{@owner_id})")
+#   puts "New venue created"
+# end
 
- class Bands
+
+# def update_venue(venue_id, venue_name, address, venue_capacity, owner_id)
+#   $db.execute("UPDATE venues SET venue_name='#{venue_name}', address='#{address}', venue_capacity=#{venue_capacity}, owner_id=#{owner_id} WHERE venue_id=#{venue_id}")
+#   puts "#{venue_name} updated"
+# end
+
+# def delete_venue(venue_id)
+#   $db.execute("DELETE FROM venues WHERE venue_id = #{venue_id})")
+#   puts "Venue with ID #{venue_id} deleted from venue table"
+# end
+
+# def show_all_venues
+#   venues = $db.execute("SELECT * FROM venues")
+#   venues.each do |venue|
+#    puts "\n\nID: #{venue['venue_id']}\nVenue Name: #{venue['venue_name']}\nVenue Address: #{venue['address']}\nMax Capacity: #{venue['venue_capacity']}\nOwner ID: #{venue['owner_id']}"
+#   end
+#   puts "End of output. If there was no output, the tables is empty."
+# end
+
+# def create_band (band_name, manager_name, email, phone)
+#   $db.execute("INSERT INTO bands (band_name, manager_name, phone, email) VALUES ('#{@band_name}', '#{@manager_name}', '#{@phone}', '#{@email}')")
+#   puts "New band created"
+# end
+
+# def update_band(band_id, band_name, manager_name, email, phone)
+#     $db.execute("UPDATE bands SET band_name='#{band_name}', manager_name='#{manager_name}', phone='#{phone}', email='#{email}' WHERE band_id=#{band_id}")
+#     puts "#{band_name} updated"
+# end
+
+# def delete_band(band_id)
+#     $db.execute("DELETE FROM bands WHERE band_id = #{band_id})")
+#     puts "Band with ID #{band_id} deleted from bands table"
+# end
+
+# def show_all_bands
+#   bands = $db.execute("SELECT * FROM bands")
+#   bands.each do |band|
+#   puts "\n\nID: #{band['band_id']}\nBand Name #{band['band_name']}\nManager: #{band['manager_name']}\nContact Email: #{band['email']}\nContact Phone: #{band['phone']}"
+#   end
+#   puts "End of output. If there was no output, the tables is empty."
+# end
+
   
-  attr_reader :band_name, :manager_name, :email, :phone
+# def create_show (venue_id, band_id, scheduled_time)
+#    $db.execute("INSERT INTO shows (venue_id, band_id, scheduled_time) VALUES (#{@venue_id}, #{@band_id}, '#{@scheduled_time}')")
+#     puts "New owner created"
+#   end
 
-  def initialize (band_name, manager_name, email, phone)
-    @band_name = band_name
-    @manager_name = manager_name
-    @phone = phone
-    @email = email
-    $db.execute("INSERT INTO bands (band_name, manager_name, phone, email) VALUES ('#{@band_name}', '#{@manager_name}', '#{@phone}', '#{@email}')")
-    puts "New band created"
-  end
+# def update_show(show_id, venue_id, band_id, scheduled_time)
+#   $db.execute("UPDATE shows SET venue_id=#{venue_id}, band_id=#{band_id}, scheduled_time='#{scheduled_time}' WHERE show_id=#{show_id}")
+#   puts "Show with id #{show_id} updated"
+# end
 
-  def update(band_id, band_name, manager_name, email, phone)
-    $db.execute("UPDATE bands SET band_name='#{band_name}', manager_name='#{manager_name}', phone='#{phone}', email='#{email}' WHERE band_id=#{band_id}")
-    puts "#{band_name} updated"
-  end
+# def delete_show(show_id)
+#   $db.execute("DELETE FROM shows WHERE show_id = #{show_id})")
+#   puts "Show with ID #{show_id} deleted from shows table"
+# end
 
-end
+# def show_all_shows
+#   shows = $db.execute("SELECT * FROM shows")
+#   shows.each do |show|
+#    puts "\n\nID: #{show['show_id']}\nVenue ID: #{show['venue_id']}\nBand ID: #{show['band_id']}\nScheduled Time: #{show['scheduled_time']}"
+#   end
+#   puts "End of output. If there was no output, the tables is empty."
+# end
+
+# tom.update(1, "Bill", "kill", "Joes Shows", "123dsadasdtreet", "1847-431-0970", "john@srphoto.com")
+
+# venue1 = Venues.new("this venue", "fjdksfjsdl", 100, 1)
+# venue1.update(1, "that venue", "bo", 200, 1)
+
+# guest = Bands.new("hello", "thee", "1847-rerere", "john@srphoto.com")
+# guest.update(1,"bye", "thee", "1847-rerere", "joccsdsrphoto.com")
+
+# show = Shows.new(1, 1, "2:00PM")
+# show.update(1,1,1,"$:00P:")
 
 
-class Shows
+
+
+
+
+
   
-  attr_reader :venue_id, :band_id, :scheduled_time
 
-  def initialize (venue_id, band_id, scheduled_time)
-    @venue_id = venue_id
-    @band_id = band_id
-    @scheduled_time = scheduled_time
-    $db.execute("INSERT INTO shows (venue_id, band_id, scheduled_time) VALUES (#{@venue_id}, #{@band_id}, '#{@scheduled_time}')")
-    puts "New owner created"
-  end
-
-  def update(show_id, venue_id, band_id, scheduled_time)
-    $db.execute("UPDATE shows SET venue_id=#{venue_id}, band_id=#{band_id}, scheduled_time='#{scheduled_time}' WHERE show_id=#{show_id}")
-    puts "Show with id #{show_id} updated"
-  end
-
-end
-
-
-tom = Owners.new("Bill", "Show", "Joes Shows", "123 fake street", "1847-431-0970", "john@srphoto.com")
-tom.update(1, "Bill", "kill", "Joes Shows", "123dsadasdtreet", "1847-431-0970", "john@srphoto.com")
-
-venue1 = Venues.new("this venue", "fjdksfjsdl", 100, 1)
-venue1.update(1, "that venue", "bo", 200, 1)
-
-guest = Bands.new("hello", "thee", "1847-rerere", "john@srphoto.com")
-guest.update(1,"bye", "thee", "1847-rerere", "joccsdsrphoto.com")
-
-show = Shows.new(1, 1, "2:00PM")
-show.update(1,1,1,"$:00P:")
-
-ONWERS =[]
-VENUES = []
-BANDS = []
-SHOWS = []
-
-owners = $db.execute("SELECT * FROM owners")
-owners.each do |owner|
- puts "ID: #{owner['id']}\nName: #{owner['f_name']} #{owner['l_name']}\nBusiness Name: #{owner['business_name']}\nOffice Address: #{owner['office_address']}\nPhone: #{owner['phone']}\nEmail: #{owner['email']}\n"
-end
 
 
 # loop do
-#   print "Enter the make of a new car or 'q' to stop building cars: "
-#   make_or_break = gets.chomp
-#   break if make_or_break.downcase == 'q'
-#   new_car_values = Hash.new
-#   new_car_values[:make] = make_or_break
+#   puts "\nWelcome to the Music Festivle database (enter EXIT at anytime to stop the program)"
+#   puts "\nThe names of tables in this database include (owners, venues, bands, shows)"
+#   print "To view the contents of a table enter and gain the ability to insert and delete values from it, enter the tables name: "
+#   table_name = gets.chomp
 
-#   print "Enter the model of the car: "
-#   model = gets.chomp
-#   new_car_values[:model] = model
+#   tables = ['owners', 'venues', 'bands', 'shows']
+#   table_actions = ["VIEW", "INSERT", "DELETE"]
 
-#   print "Enter the miles of the car: "
-#   miles = gets.chomp
-#   until is_integer(miles)
-#     print "Enter an Integer. Enter the miles of the car: "
-#     miles = gets.chomp
+#   break if table_name == "EXIT"
+
+#   until tables.include?(table_name)
+#     print "INVALID INPUT - To view the contents of a table enter and gain the ability to insert and delete values from it, enter the tables name (owners, venues, bands, shows): "
+#     table_name = gets.chomp
 #   end
-#   miles.to_i
-#   new_car_values[:miles] = miles
 
-#   print "Enter the type of the car (SUV, Coupe, et.): "
-#   type = gets.chomp
-#   new_car_values[:type] = type
+#   print "To view the contents of "+table_name+" enter VIEW, to insert a new record, enter INSERT, to delete a record, enter DELETE, to exit the program, enter EXIT: "
+#   table_action = gets.chomp
 
-#   print "Enter the color of the car: "
-#   color = gets.chomp
-#   new_car_values[:color] = color
+#   break if table_name == "EXIT"
 
-#   print "Enter the year of the car: "
-#   year = gets.chomp
-#   until is_integer(year)
-#     print "Enter an Integer. Enter the year of the car: "
-#     year = gets.chomp
+#   until table_actions.include?(table_action)
+#     print "INVALID INPUT - To view the contents of "+table_name+" enter VIEW, to insert a new record, enter INSERT, to delete a record, enter DELETE, to exit the program, enter EXIT: "
+#   table_action = gets.chomp
+#   print "h1"
+#   puts "FJDKLFJD"
 #   end
-#   year.to_i
-#   new_car_values[:year] = year
 
-#   print "Is the car used (yes or no)? "
-#   used = gets.chomp.downcase
-#   until yes_or_no(used)
-#     print "Invalid input. Is the car new or used (yes or no)? "
-#     used = gets.chomp.downcase
-#   end
-#   used = used_true_false(used)
-#   new_car_values[:used] = used
-
-#   new_car = Car.new(new_car_values[:make], new_car_values[:model], new_car_values[:miles], new_car_values[:type], new_car_values[:color], new_car_values[:year], new_car_values[:used])
-#   cars << new_car
-# end
-
-#   # Method to output attributes in one call
-#   def about
-#     puts "Make: " + @make
-#     puts "Model: " + @model
-#     puts "Miles: " + @miles.to_s
-#     puts "Type: " + @type
-#     puts "Color: " + @color
-#     puts "Year: " + @year.to_s
-#     if @used
-#       puts "The #{@make} #{@model} is used."
+#   if table_action == "VIEW"
+#     if table_name == "owners"
+#       puts "FJDKSLFJDLKS"
+#       puts table_name
+#       show_all_owners()
+#     elsif table_name == "venues"
+#       show_all_venues()
+#     elsif table_name == "bands"
+#       show_all_bands()
 #     else
-#       puts "The #{@make} #{@model} is new"
+#       show_all_shows()
 #     end
 #   end
 
-#   # Method to make the car drive and add miles
-#   def drive (miles)
-#     @miles += miles
-#     puts "The car drove " + miles.to_s + " miles."
-#   end
+#   if table_action == "INSERT"
+#     if table_name == "owners"
+#       print "Enter venue owner first name: "
+#       f_name = gets.chomp
 
-#   # Method to rev the engine
-#   def rev_engine
-#     puts "VVVRRROOOMMM!!!!!! VVVVRRROOMMM!!!!!"
-#   end
+#       print "Enter venue owner last name: "
+#       l_name = gets.chomp
 
-#   # Invert cars used boolean
-#   def used_invert
-#     if @used
-#       @used = false
-#     else
-#       @used = true
+#       print "Enter venue business name: "
+#       business_name = gets.chomp
+
+#       print "Enter venue address: "
+#       office_address = gets.chomp
+
+#       print "Enter venue phone number: "
+#       phone = gets.chomp
+
+#       print "Enter venue email: "
+#       email = gets.chomp
+
+#       new_owner = Owners.new(f_name, l_name, business_name, office_address, phone, email)
+#       OWNERS.append(new_owner)
+
+#     end
+
+#     if table_name == "venues"
+#       print "Enter venue name: "
+#       venue_name = gets.chomp
+
+#       print "Enter venue address: "
+#       address = gets.chomp
+
+#       print "Enter venue capacity: "
+#       venue_capacity = gets.chomp
+
+#       print "Enter venue owner id: "
+#       owner_id = gets.chomp
+
+#       new_venue = Venues.new(venue_name, address, venue_capacity.to_i, owner_id.to_i)
+#       VENUE.append(new_venue)
+
+#     end
+
+#     if table_name == "bands"
+#       print "Enter band name: "
+#       band_name = gets.chomp
+
+#       print "Enter manager name: "
+#       manager_name = gets.chomp
+
+#       print "Enter band email: "
+#       email = gets.chomp
+
+#       print "Enter band phone number: "
+#       phone = gets.chomp
+
+#       new_band = Bands.new(band_name, manager_name, email, phone)
+#       BANDS.append(new_band)
+#     end
+
+#     if table_name == "shows"
+#       print "Enter the venue ID: "
+#       venue_id = gets.chomp
+
+#       print "Enter the band ID: "
+#       band_id = gets.chomp
+
+#       print "Enter the scheduled time: "
+#       scheduled_time = gets.chomp
+
+#       new_show = Shows.new(venue_id.to_i, band_id.to_i, scheduled_time)
+#       SHOWS.append(new_show)
+#     end
+#   elsif table_action == "UPDATE"
+#     if table_name == "owners"
+#       print "Enter the owner id: "
+#       owner_id = gets.chomp
+
+#       print "Enter venue owner first name: "
+#       f_name = gets.chomp
+
+#       print "Enter venue owner last name: "
+#       l_name = gets.chomp
+
+#       print "Enter venue business name: "
+#       business_name = gets.chomp
+
+#       print "Enter venue address: "
+#       office_address = gets.chomp
+
+#       print "Enter venue phone number: "
+#       phone = gets.chomp
+
+#       print "Enter venue email: "
+#       email = gets.chomp
+
+#       new_business = Owners.new(f_name, l_name, business_name, office_address, phone, email)
+#     end
+
+#     if table_name == "venues"
+#       print "Enter venue name: "
+#       venue_name = gets.chomp
+
+#       print "Enter venue address: "
+#       address = gets.chomp
+
+#       print "Enter venue capacity: "
+#       venue_capacity = gets.chomp
+
+#       print "Enter venue owner id: "
+#       owner_id = gets.chomp
+
+#       new_venue = Venues.new(venue_name, address, venue_capacity.to_i, owner_id.to_i)
+#     end
+
+#     if table_name == "bands"
+#       print "Enter band name: "
+#       band_name = gets.chomp
+
+#       print "Enter manager name: "
+#       manager_name = gets.chomp
+
+#       print "Enter band email: "
+#       email = gets.chomp
+
+#       print "Enter band phone number: "
+#       phone = gets.chomp
+
+#       new_band = Bands.new(band_name, manager_name, email, phone)
+#     end
+
+#     if table_name == "shows"
+#       print "Enter the venue ID: "
+#       venue_id = gets.chomp
+
+#       print "Enter the band ID: "
+#       band_id = gets.chomp
+
+#       print "Enter the scheduled time: "
+#       scheduled_time = gets.chomp
+
+#       new_show = Shows.new(venue_id.to_i, band_id.to_i, scheduled_time)
 #     end
 #   end
 # end
 
-# # BUSINESS LOGIC
-
-# def yes_or_no (string)
-#   if string == 'yes' || string == 'no'
-#     true
-#   else
-#     false
-#   end
-# end
-
-# def used_true_false (string)
-#   if string == 'yes'
-#     true
-#   else
-#     false
-#   end
-# end
-
-# def is_integer input
-#   true if Integer(input) rescue false
-# end
 
 
-# add a test kitten
-# db.execute("INSERT INTO kittens (name, age) VALUES ('Bob', 10)")
+# # tom = Owners.new("Bill", "Show", "Joes Shows", "123 fake street", "1847-431-0970", "john@srphoto.com")
+# # tom.update(1, "Bill", "kill", "Joes Shows", "123dsadasdtreet", "1847-431-0970", "john@srphoto.com")
 
-# add LOOOOTS of kittens!
-# so. many. kittens. 
-# KittenExplosion
-# def create_kitten(db, name, age)
-#   db.execute("INSERT INTO kittens (name, age) VALUES (?, ?)", [name, age])
-# end
+# # venue1 = Venues.new("this venue", "fjdksfjsdl", 100, 1)
+# # venue1.update(1, "that venue", "bo", 200, 1)
 
-# 10000.times do
-#   create_kitten(db, Faker::Name.name, 0)
-# end
 
-# explore ORM by retrieving data
-# kittens = db.execute("SELECT * FROM kittens")
-# kittens.each do |kitten|
-#  puts "#{kitten['name']} is #{kitten['age']}"
-# end
+# # guest.update(1,"bye", "thee", "1847-rerere", "joccsdsrphoto.com")
 
-# sele# OPERATION KITTEN EXPLOSION!
 
-# talk about Object Relational Mapping (ORM)
+# # show.update(1,1,1,"$:00P:")
+
 
 
 
