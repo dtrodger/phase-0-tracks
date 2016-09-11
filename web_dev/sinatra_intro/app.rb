@@ -26,7 +26,11 @@ end
 # write a GET route that retrieves
 # all student data
 get '/students' do
-  students = db.execute("SELECT * FROM students")
+  if params[:campus]
+    students = db.execute("SELECT * FROM students WHERE students.campus = ?", params[:campus])
+  else
+     students = db.execute("SELECT * FROM students")
+  end
   response = ""
   students.each do |student|
     response << "ID: #{student['id']}<br>"
@@ -44,3 +48,21 @@ get '/students/:id' do
   student = db.execute("SELECT * FROM students WHERE id=?", [params[:id]])[0]
   student.to_s
 end
+
+get '/contact' do
+  "2 North Lasalle, Chicago IL"
+end
+
+get '/great_job' do
+  if params[:name]
+    "Great job, #{params[:name]}."
+  else
+    "Great job."
+  end
+end
+
+get '/add/:num1/:num2' do
+  sum = params[:num1].to_i + params[:num2].to_i
+  "Result: " + sum.to_s
+end
+
