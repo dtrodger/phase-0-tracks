@@ -1,0 +1,1 @@
+The two distinct feature of linux that I can find out that it is open source and it has one kernal. I think a VPS is a server that restricts accesss to a limited number of users. I think they are easier to customize but fwe peole have the stamina to learn the ins and outs of customiing such a server.
